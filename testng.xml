@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Parabank Test Suite">
+    <test name="Login Tests">
+        <classes>
+            <!-- Update this with the full package + class name of your login test -->
+            <class name="com.example.parabank.tests.LoginTest"/>
+        </classes>
+    </test>
+</suite>
