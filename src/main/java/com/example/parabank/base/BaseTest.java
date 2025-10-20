@@ -1,13 +1,15 @@
 package com.example.parabank.base;
 
-import com.example.parabank.utils.ConfigReader;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.time.Duration;
+import com.example.parabank.utils.ConfigReader;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
 

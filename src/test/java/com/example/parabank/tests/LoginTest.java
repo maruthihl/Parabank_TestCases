@@ -31,10 +31,6 @@ public class LoginTest {
 
         Assert.assertEquals(actualTitle, expectedTitle, "❌ Login failed or title mismatch");
     }
-    @Test
-public void intentionalFailTest() {
-    Assert.fail("❌ This is a forced failure to test CI/CD");
-}
 
     @AfterMethod
     public void tearDown() {

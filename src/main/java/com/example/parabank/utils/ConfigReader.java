@@ -16,7 +16,7 @@ public class ConfigReader {
             // Load the config file from the classpath (resources folder)
                    InputStream  input= ConfigReader.class
                    .getClassLoader()
-                     .getResourceAsStream("config.properties");
+                     .getResourceAsStream("config/config.properties");
                      if(input==null){
                          System.out.println("❌ Sorry, unable to find config.properties");
                          return;
