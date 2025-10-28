@@ -1,0 +1,110 @@
+[1mdiff --git a/.github/workflows/ci-cd.yml b/.github/workflows/ci-cd.yml[m
+[1mindex fc14cd3..cfaaade 100644[m
+[1m--- a/.github/workflows/ci-cd.yml[m
+[1m+++ b/.github/workflows/ci-cd.yml[m
+[36m@@ -19,7 +19,6 @@[m [mjobs:[m
+       - name: Set up JDK[m
+         uses: actions/setup-java@v2[m
+         with:[m
+[31m-          distribution: 'temurin'  # Specify Java distribution (e.g., temurin)[m
+           java-version: '17'  # Use Java 17, you can change this if needed[m
+ [m
+       - name: Cache Maven dependencies[m
+[1mdiff --git a/README.md b/README.md[m
+[1mdeleted file mode 100644[m
+[1mindex b750741..0000000[m
+[1m--- a/README.md[m
+[1m+++ /dev/null[m
+[36m@@ -1,2 +0,0 @@[m
+[31m-# Parabank_TestCases[m
+[31m-Manual and Automation Test Cases for Parabank[m
+[1mdiff --git a/src/main/java/com/example/parabank/base/BaseTest.java b/src/main/java/com/example/parabank/base/BaseTest.java[m
+[1mindex 7c46997..2e2f652 100644[m
+[1m--- a/src/main/java/com/example/parabank/base/BaseTest.java[m
+[1m+++ b/src/main/java/com/example/parabank/base/BaseTest.java[m
+[36m@@ -1,15 +1,13 @@[m
+ package com.example.parabank.base;[m
+ [m
+[31m-import java.time.Duration;[m
+[31m-[m
+[32m+[m[32mimport com.example.parabank.utils.ConfigReader;[m
+[32m+[m[32mimport io.github.bonigarcia.wdm.WebDriverManager;[m
+ import org.openqa.selenium.WebDriver;[m
+ import org.openqa.selenium.chrome.ChromeDriver;[m
+ import org.openqa.selenium.edge.EdgeDriver;[m
+ import org.openqa.selenium.firefox.FirefoxDriver;[m
+ [m
+[31m-import com.example.parabank.utils.ConfigReader;[m
+[31m-[m
+[31m-import io.github.bonigarcia.wdm.WebDriverManager;[m
+[32m+[m[32mimport java.time.Duration;[m
+ [m
+ public class BaseTest {[m
+ [m
+[1mdiff --git a/src/main/java/com/example/parabank/utils/ConfigReader.java b/src/main/java/com/example/parabank/utils/ConfigReader.java[m
+[1mindex 3e96e6f..ca8ac66 100644[m
+[1m--- a/src/main/java/com/example/parabank/utils/ConfigReader.java[m
+[1m+++ b/src/main/java/com/example/parabank/utils/ConfigReader.java[m
+[36m@@ -16,7 +16,7 @@[m [mpublic class ConfigReader {[m
+             // Load the config file from the classpath (resources folder)[m
+                    InputStream  input= ConfigReader.class[m
+                    .getClassLoader()[m
+[31m-                     .getResourceAsStream("config/config.properties");[m
+[32m+[m[32m                     .getResourceAsStream("config.properties");[m
+                      if(input==null){[m
+                          System.out.println("❌ Sorry, unable to find config.properties");[m
+                          return;[m
+[1mdiff --git a/src/main/resources/config.properties b/src/main/resources/config.properties[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ce14c36[m
+[1m--- /dev/null[m
+[1m+++ b/src/main/resources/config.properties[m
+[36m@@ -0,0 +1,4 @@[m
+[32m+[m[32murl=https://www.saucedemo.com/[m
+[32m+[m[32mbrowser=chrome[m
+[32m+[m[32musername=standard_user[m
+[32m+[m[32mpassword=secret_sauce[m
+[1mdiff --git a/src/main/resources/config/config.properties b/src/main/resources/config/config.properties[m
+[1mdeleted file mode 100644[m
+[1mindex 68e81f2..0000000[m
+[1m--- a/src/main/resources/config/config.properties[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-# Application Details[m
+[31m-headless=false[m
+[31m-url=https://www.saucedemo.com/[m
+[31m-browser=chrome[m
+[31m-# Waits & Timeouts[m
+[31m-implicitWait=10[m
+[31m-explicitWait=20[m
+[31m-pageLoadTimeout=30[m
+[31m-[m
+[31m-# Credentials (if dummy)[m
+[31m-username=standard_user[m
+[31m-password=secret_sauce[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/resources/config/environment.properties b/src/main/resources/config/environment.properties[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/src/main/resources/config/log4j2.xml b/src/main/resources/config/log4j2.xml[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/src/test/java/com/example/parabank/tests/LoginTest.java b/src/test/java/com/example/parabank/tests/LoginTest.java[m
+[1mindex 5c6cdab..5f1ad2d 100644[m
+[1m--- a/src/test/java/com/example/parabank/tests/LoginTest.java[m
+[1m+++ b/src/test/java/com/example/parabank/tests/LoginTest.java[m
+[36m@@ -31,6 +31,10 @@[m [mpublic class LoginTest {[m
+ [m
+         Assert.assertEquals(actualTitle, expectedTitle, "❌ Login failed or title mismatch");[m
+     }[m
+[32m+[m[32m    @Test[m
+[32m+[m[32mpublic void intentionalFailTest() {[m
+[32m+[m[32m    Assert.fail("❌ This is a forced failure to test CI/CD");[m
+[32m+[m[32m}[m
+ [m
+     @AfterMethod[m
+     public void tearDown() {[m
+[1mdiff --git a/src/test/resources/TestData/LoginData.xlsx b/src/test/resources/TestData/LoginData.xlsx[m
+[1mdeleted file mode 100644[m
+[1mindex 2a786fe..0000000[m
+Binary files a/src/test/resources/TestData/LoginData.xlsx and /dev/null differ
